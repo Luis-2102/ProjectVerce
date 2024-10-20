@@ -1,10 +1,19 @@
 {
-    "builds": [
-      { "src": "webinterfaces/wsgi.py", "use": "@vercel/python" }
-    ],
-    "routes": [
-      { "src": "/static/(.*)", "dest": "/static/$1" },
-      { "src": "/(.*)", "dest": "webinterfaces/wsgi.py" }
-    ]
-  }
-  
+  "builds": [
+    {
+      "src": "webinterfaces/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "buildCommand": "python manage.py collectstatic --noinput",
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "webinterfaces/wsgi.py"
+    }
+  ]
+}
